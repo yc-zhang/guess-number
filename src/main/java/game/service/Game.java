@@ -4,21 +4,20 @@ import game.model.CompareResult;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import static game.service.GuessNumberUtils.isValid;
 import static game.service.GuessNumberUtils.parseInputGuessNumber;
 
 public class Game {
     private final Guess guess;
+    private final BufferedReader reader;
 
-    public Game(Guess guess) {
+    public Game(Guess guess, BufferedReader reader) {
         this.guess = guess;
+        this.reader = reader;
     }
 
     public void play() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         System.out.println("Welcome!");
         int round = 6;
         try {
@@ -32,10 +31,10 @@ public class Game {
                         System.out.println("Congratulations!");
                         return;
                     } else {
-                        System.out.println(compareResult);
+                        System.out.println(compareResult.toString());
                     }
                 } else {
-                    System.out.println("Cannot input invalid numbers!");
+                    System.out.println("Please input valid numbers!");
                     i--;
                 }
             }
